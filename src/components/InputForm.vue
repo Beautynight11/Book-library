@@ -1,15 +1,22 @@
 <template>
   <form>
-    <input :type="type" :placeholder="placeholder"/>
-    <Button :type="typeBtn"/>
+    <input
+        :type="type"
+        :placeholder="placeholder"
+        v-model="this.info"
+    />
+    <button
+        :type="typeBtn"
+        @click="buttonFunc(this.info)"
+    >
+      {{ text }}
+    </button>
   </form>
 </template>
 
 <script>
-import Button from "./Button.vue";
 export default {
   name: "InputForm",
-  components: {Button},
   props: {
     placeholder: {
       required: true,
@@ -23,7 +30,21 @@ export default {
       required: true,
       type: String,
     },
-  }
+    buttonFunc: {
+      required: false,
+      type: Function,
+    },
+    text: {
+      required: false,
+      type: String,
+      default: null
+    },
+  },
+  data() {
+    return {
+      info: null
+    }
+  },
 }
 </script>
 
@@ -38,4 +59,7 @@ input
   outline: none
   border: none
 
+button
+  outline: none
+  border: none
 </style>

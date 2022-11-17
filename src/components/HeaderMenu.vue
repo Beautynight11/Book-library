@@ -10,7 +10,8 @@
       <InputForm
           placeholder="Book, author, genre..."
           type="text"
-          type-btn="submit"
+          type-btn="button"
+          :button-func="getInfo"
       />
     </div>
     <div class="header__account">Mary</div>
@@ -22,7 +23,17 @@ import InputForm from "./InputForm.vue";
 
 export default {
   name: "HeaderMenu",
-  components: {InputForm}
+  components: {InputForm},
+  data () {
+    return {
+      info: null
+    }
+  },
+  methods: {
+    getInfo(info) {
+      this.info = info;
+    }
+  }
 }
 </script>
 
