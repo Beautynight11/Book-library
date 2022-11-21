@@ -25,7 +25,7 @@ export default {
     content: ''
     width: 100%
     height: 100%
-    background-image: url("../img/stars-png-transparent-13.png")
+    background-image: url("../../public/images/stars-png-transparent-13.png")
     background-repeat: no-repeat
     position: absolute
     top: 0

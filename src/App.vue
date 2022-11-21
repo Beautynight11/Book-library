@@ -3,6 +3,7 @@
      <HeaderMenu/>
      <div class="container">
        <MainPage v-if="this.isMain"/>
+       <Catalog :catalog="this.data"/>
      </div>
    </div>
 </template>
@@ -10,16 +11,17 @@
 <script>
 import HeaderMenu from "./components/HeaderMenu.vue";
 import MainPage from "./components/MainPage.vue";
+import Catalog from "./components/Catalog.vue";
 
 import books from './books.json';
 
 export default {
   name: 'App',
-  components: {MainPage, HeaderMenu },
+  components: {Catalog, MainPage, HeaderMenu },
   data () {
     return {
       data: books,
-      isMain: true,
+      isMain: false,
     }
   },
   methods: {
