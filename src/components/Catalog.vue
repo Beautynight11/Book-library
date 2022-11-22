@@ -1,8 +1,5 @@
 <template>
   <div class="catalog">
-    <div class="catalog__top">
-      <div class="catalog__filter">Filter</div>
-    </div>
     <div class="catalog__books">
       <div
           class="catalog__book"
@@ -21,6 +18,7 @@
 </template>
 
 <script>
+
 export default {
   name: "Catalog",
   props: {
@@ -28,19 +26,19 @@ export default {
       required: true,
       type: Array,
     }
-  }
+  },
+  data () {
+    return {
+    }
+  },
+  methods: {
+  },
+
 }
 </script>
 
 <style scoped lang="sass">
 .catalog
-
-  &__top
-    margin-bottom: 50px
-    background-color: #d7d2d2
-    padding: 20px
-    width: 100vw
-    margin-left: -15px
 
   &__books
     display: flex
@@ -71,7 +69,6 @@ export default {
 
   &__book:hover > &__description
     opacity: 1
-
 
   &__title, &__text
     margin-bottom: 5px
