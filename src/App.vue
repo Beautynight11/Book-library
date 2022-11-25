@@ -10,11 +10,13 @@
          :get-params="getParams"
          :filter-by-year="filterByYear"
      />
-     <div class="container">
        <Home v-if="this.isMain"/>
-       <Catalog :catalog="this.filteredData || this.data"/>
+       <Catalog
+           :catalog="this.filteredData || this.data"
+           :get-book-info="getBookInfo"
+       />
+     <BookPage :books="this.newBook" :img-book="this.imgBook"/>
      </div>
-   </div>
 </template>
 
 <script>
@@ -22,12 +24,13 @@ import HeaderMenu from "./components/HeaderMenu.vue";
 import Home from "./components/Home.vue";
 import Catalog from "./components/Catalog.vue";
 import CatalogTop from "./components/CatalogTop.vue";
+import BookPage from "./components/BookPage.vue";
 
 import books from './books.json';
 
 export default {
   name: 'App',
-  components: {CatalogTop, Catalog, Home, HeaderMenu },
+  components: {BookPage, CatalogTop, Catalog, Home, HeaderMenu },
   data () {
     return {
       data: books,
@@ -40,6 +43,8 @@ export default {
       isFilter: false,
       names: ['New', 'Old', 'More...'],
       filteredData: null,
+      newBook: {},
+      imgBook: ''
     }
   },
   methods: {
@@ -79,6 +84,10 @@ export default {
             }
           }
       )
+    },
+    getBookInfo (img, obj) {
+      this.newBook = obj;
+      this.imgBook = img;
     }
   },
   mounted() {

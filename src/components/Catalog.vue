@@ -1,11 +1,20 @@
 <template>
-  <div class="catalog">
+  <div class="container">
+    <div class="catalog">
     <div class="catalog__books">
       <div
           class="catalog__book"
           v-for="(book, index) in catalog"
           :key="index"
           :style="`background-image: url(${book.imageLink})`"
+          @click="this.getBookInfo(book.imageLink,{
+              Name: book.title,
+              Author: book.author,
+              Country: book.country,
+              Year: book.year,
+              Pages: book.pages,
+              Language: book.language,
+              })"
       >
         <div class="catalog__description">
           <div class="catalog__title">Author: {{book.author}}</div>
@@ -14,6 +23,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -25,6 +35,10 @@ export default {
     catalog: {
       required: true,
       type: Array,
+    },
+    getBookInfo: {
+      required: true,
+      type: Function,
     }
   },
   data () {
