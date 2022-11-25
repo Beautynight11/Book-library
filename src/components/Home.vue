@@ -3,7 +3,7 @@
     <div class="main__title">Welcome to the book library!</div>
     <div class="main__text">
       <p>Here you can find a large number of different literature.</p>
-      <p>To get started, click <b>'catalog of books'</b> or use the search</p>
+      <p>To get started, click <span>'catalog of books'</span> or use the search</p>
     </div>
   </div>
 </template>
@@ -19,18 +19,6 @@ export default {
   color: #111546
   text-align: center
   padding: 200px 0
-  position: relative
-
-  &:after
-    content: ''
-    width: 100%
-    height: 100%
-    background-image: url("../../public/images/stars-png-transparent-13.png")
-    background-repeat: no-repeat
-    position: absolute
-    top: 0
-    left: 0
-    opacity: .1
 
 
   &__title
@@ -40,4 +28,10 @@ export default {
 
   &__text
     font-size: 20px
+
+span
+  cursor: pointer
+
+  &:hover
+    color: #d7d040
 </style>

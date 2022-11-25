@@ -1,21 +1,26 @@
 <template>
    <div class="app">
      <HeaderMenu/>
-     <CatalogTop
-         :get-list="getList"
-         :is-filter="this.isFilter"
-         :options="this.options"
-         :names="this.names"
-         :toggle-filter="toggleFilter"
-         :get-params="getParams"
-         :filter-by-year="filterByYear"
-     />
-       <Home v-if="this.isMain"/>
+       <Home/>
+     <div class="app__catalog">
+       <CatalogTop
+           :get-list="getList"
+           :is-filter="this.isFilter"
+           :options="this.options"
+           :names="this.names"
+           :toggle-filter="toggleFilter"
+           :get-params="getParams"
+           :filter-by-year="filterByYear"
+       />
        <Catalog
            :catalog="this.filteredData || this.data"
            :get-book-info="getBookInfo"
        />
-     <BookPage :books="this.newBook" :img-book="this.imgBook"/>
+     </div>
+     <BookPage
+         :books="this.newBook"
+         :img-book="this.imgBook"
+     />
      </div>
 </template>
 
@@ -34,7 +39,6 @@ export default {
   data () {
     return {
       data: books,
-      isMain: false,
       options: ['Country', 'Language'],
       filter: {
         country: [],
