@@ -7,10 +7,11 @@
          :options="this.options"
          :names="this.names"
          :toggle-filter="toggleFilter"
+         :get-params="getParams"
      />
      <div class="container">
        <Home v-if="this.isMain"/>
-       <Catalog :catalog="this.data"/>
+       <Catalog :catalog="this.filteredData || this.data"/>
      </div>
    </div>
 </template>
@@ -36,7 +37,8 @@ export default {
         language: [],
       },
       isFilter: false,
-      names: ['New', 'Old', 'More...']
+      names: ['New', 'Old', 'More...'],
+      filteredData: null,
     }
   },
   methods: {
@@ -50,6 +52,12 @@ export default {
     },
     toggleFilter() {
       this.isFilter = !this.isFilter
+    },
+    getParams(el) {
+      this.filteredData = this.data.filter(data => data.country === el
+          || data.language === el
+      );
+      this.isFilter = false
     }
   },
   mounted() {

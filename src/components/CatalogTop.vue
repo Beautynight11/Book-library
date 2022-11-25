@@ -23,6 +23,7 @@
           :key="index"
           :title="option"
           :filter="getList(option)"
+          :get-params="getParams"
       />
       <div
           class="catalog__btn"
@@ -61,6 +62,10 @@ export default {
     toggleFilter: {
       required: true,
       type: Function,
+    },
+    getParams: {
+      required: true,
+      type: Function
     }
   }
 }

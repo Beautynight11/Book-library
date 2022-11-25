@@ -6,6 +6,7 @@
           class="filter__item"
           v-for="(item, index) in filter"
           :key="index"
+          @click="getParams(item)"
       >
         {{ item }}
       </div>
@@ -26,6 +27,10 @@ export default {
       required: false,
       type: Object,
     },
+    getParams: {
+      required: true,
+      type: Function
+    }
   },
   data () {
     return {
