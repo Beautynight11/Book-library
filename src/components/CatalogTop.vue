@@ -11,7 +11,7 @@
           class="catalog__list"
           v-for="(name, index) in this.names"
           :key="index"
-          @click="toggleFilter"
+          @click="filterByYear(name)"
       >
         {{ name }}</div>
     </div>
@@ -22,13 +22,13 @@
           v-for="(option, index) in this.options"
           :key="index"
           :title="option"
-          :filter="getList(option)"
-          :get-params="getParams"
+          :filter="this.getList(option)"
+          :get-params="this.getParams"
       />
       <div
           class="catalog__btn"
           v-if="this.isFilter"
-          @click="toggleFilter"
+          @click="this.toggleFilter"
       >
         <div class="catalog__cross"></div>
       </div>
@@ -64,6 +64,10 @@ export default {
       type: Function,
     },
     getParams: {
+      required: true,
+      type: Function
+    },
+    filterByYear: {
       required: true,
       type: Function
     }
