@@ -1,7 +1,7 @@
 <template>
   <div class="catalog__top">
     <div class="catalog__filter"
-         v-if="!this.isFilter">
+         v-if="!isFilter">
       <div
           class="catalog__name"
       >
@@ -9,26 +9,29 @@
       </div>
       <div
           class="catalog__list"
-          v-for="(name, index) in this.names"
+          v-for="(name, index) in names"
           :key="index"
           @click="filterByYear(name)"
       >
         {{ name }}</div>
     </div>
     <div class="catalog__select"
-         v-if="this.isFilter"
+         v-if="isFilter"
     >
       <FilterForm
-          v-for="(option, index) in this.options"
-          :key="index"
-          :title="option"
-          :filter="this.getList(option)"
-          :get-params="this.getParams"
+          title="Country"
+          :filter="filters.country"
+          :get-params="getParams"
+      />
+      <FilterForm
+          title="Language"
+          :filter="filters.language"
+          :get-params="getParams"
       />
       <div
           class="catalog__btn"
-          v-if="this.isFilter"
-          @click="this.toggleFilter"
+          v-if="isFilter"
+          @click="toggleFilter"
       >
         <div class="catalog__cross"></div>
       </div>
@@ -39,45 +42,29 @@
 <script>
 import FilterForm from "./FilterForm.vue";
 
+import { mapMutations, mapState } from "vuex";
+
 export default {
   name: "CatalogTop",
   components: {FilterForm},
-  props: {
-    getList: {
-      required: true,
-      type: Function,
-    },
-    names: {
-      required: true,
-      type: Array,
-    },
-    isFilter: {
-      required: true,
-      type: Boolean,
-    },
-    options: {
-      required: true,
-      type: Array,
-    },
-    toggleFilter: {
-      required: true,
-      type: Function,
-    },
-    getParams: {
-      required: true,
-      type: Function
-    },
-    filterByYear: {
-      required: true,
-      type: Function
-    }
-  }
+  methods: {
+    ...mapMutations([
+      'toggleFilter',
+      'getParams',
+      'filterByYear',
+    ]),
+  },
+    computed: mapState([
+      'names',
+      'isFilter',
+      'options',
+      'filters'
+  ])
 }
 </script>
 
 <style scoped lang="sass">
 .catalog
-
   &__top
     margin-bottom: 50px
     background-color: #d7d2d2

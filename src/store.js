@@ -4,33 +4,48 @@ import books from "./books.json";
 const store = createStore({
     state () {
         return {
-            data: books,
+            list: books,
             newBook: {},
             imgBook: '',
             filteredData: null,
+            options: ['Country', 'Language'],
+            filters: {
+                country: [],
+                language: [],
+            },
+            isFilter: false,
+            names: ['New', 'Old', 'More...'],
         }
     },
     mutations: {
-        getBookInfo (img, obj) {
-            this.newBook = obj;
-            this.imgBook = img;
+        getBookInfo (state, img, obj) {
+            state.newBook = obj;
+            state.imgBook = img;
         },
-        toggleFilter() {
-            this.isFilter = !this.isFilter
-            if (this.isFilter === false) {
-                this.filteredData = this.data
+        toggleFilter(state) {
+            state.isFilter = !state.isFilter
+            if (state.isFilter === false) {
+                state.filteredData = state.list
             }
         },
-        getParams(el) {
-            this.filteredData = this.data.filter(
+        getParams(state, el) {
+            state.filteredData = state.list.filter(
                 data =>
                     data.country === el
                     || data.language === el
             );
-            this.isFilter = false
+            state.isFilter = false
         },
-        filterByYear(name) {
-            this.filteredData = this.data.filter(
+        filterByYear(state, name) {
+            state.list.forEach(object => {
+                if (!state.filters.country.includes(object.country)) {
+                    state.filters.country.push(object.country);
+                }
+                if (!state.filters.language.includes(object.language)) {
+                    state.filters.language.push(object.language);
+                }
+            });
+            state.filteredData = state.list.filter(
                 data => {
                     if(name.toLowerCase() === 'new') {
                         return data.year > 1850 && data.year < 2000
@@ -39,12 +54,12 @@ const store = createStore({
                         return data.year < 1849
                     }
                     if (name.toLowerCase() === 'more...') {
-                        this.isFilter = true
+                        state.isFilter = true;
                     }
                 }
             )
         },
-    }
+    },
 });
 
 export default store;

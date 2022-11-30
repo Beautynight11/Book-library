@@ -1,7 +1,9 @@
 <template>
   <div class="header">
     <div class="header__logo">
-      <div class="header__title">Book library</div>
+      <div class="header__title">
+        <router-link :to="{path: '/'}">Book library</router-link>
+      </div>
       <div class="header__image">
         <div class="header__img"></div>
       </div>
@@ -37,7 +39,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .header
   background-color: #111546
   color: white
@@ -86,4 +88,8 @@ export default {
       margin-left: -10px
       margin-top: -10px
 
+a
+  color: #ffffff
+  text-decoration: none
+  outline: none
 </style>

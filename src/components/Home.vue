@@ -3,14 +3,28 @@
     <div class="main__title">Welcome to the book library!</div>
     <div class="main__text">
       <p>Here you can find a large number of different literature.</p>
-      <p>To get started, click <span>'catalog of books'</span> or use the search</p>
+      <p>To get started, click
+        <router-link :to="{path: '/catalog'}">'
+          catalog of books'
+        </router-link>
+        or use the search</p>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
+
 export default {
-  name: "MainPage"
+  name: "MainPage",
+  methods: {
+    ...mapMutations([
+        "getBookInfo"
+    ])
+  },
+  computed: mapState([
+      "filteredData",
+  ])
 }
 </script>
 
@@ -29,8 +43,9 @@ export default {
   &__text
     font-size: 20px
 
-span
-  cursor: pointer
+a
+  color: inherit
+  text-decoration: none
 
   &:hover
     color: #d7d040

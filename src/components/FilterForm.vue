@@ -10,7 +10,6 @@
       >
         {{ item }}
       </div>
-
     </div>
   </div>
 </template>
@@ -32,11 +31,11 @@ export default {
       type: Function
     }
   },
-  data () {
-    return {
-      list: null,
+  methods: {
+    biba(data, el) {
+      console.log(data, el)
     }
-  },
+  }
 
 }
 </script>

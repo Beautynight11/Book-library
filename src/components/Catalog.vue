@@ -1,13 +1,14 @@
 <template>
-  <div class="container">
-    <div class="catalog">
+  <div class="catalog">
+    <CatalogTop/>
+    <div class="container">
     <div class="catalog__books">
       <div
           class="catalog__book"
-          v-for="(book, index) in catalog"
+          v-for="(book, index) in filteredData || list"
           :key="index"
           :style="`background-image: url(${book.imageLink})`"
-          @click="this.getBookInfo(book.imageLink,{
+          @click="getBookInfo(book.imageLink, {
               Name: book.title,
               Author: book.author,
               Country: book.country,
@@ -28,25 +29,25 @@
 </template>
 
 <script>
+import CatalogTop from "./CatalogTop.vue";
+import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "Catalog",
-  props: {
-    catalog: {
-      required: true,
-      type: Array,
-    },
-    getBookInfo: {
-      required: true,
-      type: Function,
-    }
-  },
+  components: { CatalogTop },
   data () {
     return {
     }
   },
   methods: {
+    ...mapMutations({
+      getBookInfo: 'getBookInfo'
+    })
   },
+  computed: mapState([
+    'filteredData',
+      'list'
+  ])
 
 }
 </script>
