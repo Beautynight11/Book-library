@@ -61,7 +61,8 @@ export default {
   &__books
     display: flex
     flex-wrap: wrap
-    justify-content: space-between
+    justify-content: center
+    margin-right: -40px
 
   &__book
     width: 220px
@@ -72,6 +73,7 @@ export default {
     background-repeat: no-repeat
     background-size: contain
     background-position: center
+    margin-right: 40px
 
   &__description
     background-color: #000

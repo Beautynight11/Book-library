@@ -33,8 +33,12 @@ const store = createStore({
                 data =>
                     data.country === el
                     || data.language === el
+                    || data.title === el
+                    || data.year === el
+                    || data.author === el
+                    || data.pages === el
             );
-            state.isFilter = false
+            state.isFilter = false;
         },
         filterByYear(state, name) {
             state.list.forEach(object => {

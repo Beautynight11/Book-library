@@ -39,7 +39,7 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 .header
   background-color: #111546
   color: white
