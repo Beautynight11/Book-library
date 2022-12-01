@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import CatalogTop from "./CatalogTop.vue";
+import CatalogTop from "../components/CatalogTop.vue";
 import { mapState, mapMutations } from "vuex";
 
 export default {

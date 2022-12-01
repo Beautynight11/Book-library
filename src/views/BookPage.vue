@@ -67,7 +67,7 @@ export default {
   &__arrow
     width: 100%
     height: 100%
-    background-image: url("../public/icons/1491254409-leftarrowbackwardsign_82959.png")
+    background-image: url("../../public/icons/1491254409-leftarrowbackwardsign_82959.png")
     background-position: center
     background-repeat: no-repeat
     background-size: cover

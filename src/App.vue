@@ -7,12 +7,10 @@
 
 <script>
 import HeaderMenu from "./components/HeaderMenu.vue";
-import BookPage from "./components/BookPage.vue";
 
 export default {
   name: 'App',
   components: {
-    BookPage,
     HeaderMenu
   },
 }
