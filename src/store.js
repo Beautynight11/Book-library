@@ -18,9 +18,9 @@ const store = createStore({
         }
     },
     mutations: {
-        getBookInfo (state, img, obj) {
-            state.newBook = obj;
+        getBookInfo (state, {img, obj}) {
             state.imgBook = img;
+            state.newBook = obj;
         },
         toggleFilter(state) {
             state.isFilter = !state.isFilter

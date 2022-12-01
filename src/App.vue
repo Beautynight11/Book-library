@@ -1,10 +1,6 @@
 <template>
    <div class="app">
      <HeaderMenu/>
-<!--     <BookPage-->
-<!--         :books="newBook"-->
-<!--         :img-book="imgBook"-->
-<!--     />-->
      </div>
   <router-view/>
 </template>

@@ -4,13 +4,13 @@
       <div class="bookPage__image">
         <div
             class="bookPage__img"
-            :style="`background-image: url(${this.imgBook})`">
+            :style="`background-image: url(${imgBook})`">
         </div>
       </div>
       <div class="bookPage__description">
         <div
             class="bookPage__info"
-            v-for="(item, index) in books"
+            v-for="(item, index) in newBook"
             :key="index"
         >
           {{ index }}: {{ item }}
@@ -21,23 +21,14 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
   name: "BookPage",
-  props: {
-    books: {
-      required: true,
-      type: Object
-    },
-    imgBook: {
-      required: true,
-      type: String
-    }
-  },
-  data() {
-    return {
-    }
-  },
-  methods: {},
+  computed: mapState([
+      'newBook',
+      'imgBook'
+  ])
 }
 </script>
 
@@ -46,6 +37,7 @@ export default {
   display: flex
   align-items: center
   justify-content: center
+  padding-top: 20px
 
   &__image
     width: 300px

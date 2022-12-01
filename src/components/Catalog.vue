@@ -3,18 +3,21 @@
     <CatalogTop/>
     <div class="container">
     <div class="catalog__books">
-      <div
+      <router-link :to="{path: '/book'}"
           class="catalog__book"
           v-for="(book, index) in filteredData || list"
           :key="index"
           :style="`background-image: url(${book.imageLink})`"
-          @click="getBookInfo(book.imageLink, {
+          @click="getBookInfo(
+              {img: book.imageLink,
+              obj: {
               Name: book.title,
               Author: book.author,
               Country: book.country,
               Year: book.year,
               Pages: book.pages,
               Language: book.language,
+              }
               })"
       >
         <div class="catalog__description">
@@ -22,7 +25,7 @@
           <div class="catalog__text">Title: {{book.title}}</div>
           <div class="catalog__country">Country: {{book.country}}</div>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
   </div>

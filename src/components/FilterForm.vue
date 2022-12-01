@@ -31,11 +31,6 @@ export default {
       type: Function
     }
   },
-  methods: {
-    biba(data, el) {
-      console.log(data, el)
-    }
-  }
 
 }
 </script>
