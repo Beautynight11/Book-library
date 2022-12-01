@@ -1,6 +1,14 @@
 <template>
   <div class="catalog">
-    <CatalogTop/>
+    <CatalogTop
+        :filter-by-year="filterByYear"
+        :get-params="getParams"
+        :toggle-filter="toggleFilter"
+        :names="names"
+        :options="options"
+        :is-filter="isFilter"
+        :filters="filters"
+    />
     <div class="container">
     <div class="catalog__books">
       <router-link :to="{path: '/book'}"
@@ -43,15 +51,21 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({
-      getBookInfo: 'getBookInfo'
-    })
+    ...mapMutations([
+      'getBookInfo',
+      'toggleFilter',
+      'getParams',
+      'filterByYear',
+    ])
   },
   computed: mapState([
     'filteredData',
-      'list'
+    'list',
+    'names',
+    'isFilter',
+    'options',
+    'filters'
   ])
-
 }
 </script>
 

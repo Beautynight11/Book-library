@@ -42,24 +42,39 @@
 <script>
 import FilterForm from "./FilterForm.vue";
 
-import { mapMutations, mapState } from "vuex";
-
 export default {
   name: "CatalogTop",
   components: {FilterForm},
-  methods: {
-    ...mapMutations([
-      'toggleFilter',
-      'getParams',
-      'filterByYear',
-    ]),
+  props: {
+    names: {
+      required: true,
+      type: Array,
+    },
+    isFilter: {
+      required: true,
+      type: Boolean,
+    },
+    options: {
+      required: true,
+      type: Array,
+    },
+    filters: {
+      required: true,
+      type: Object,
+    },
+    toggleFilter: {
+      required: true,
+      type: Function,
+    },
+    getParams: {
+      required: true,
+      type: Function,
+    },
+    filterByYear: {
+      required: true,
+      type: Function,
+    },
   },
-    computed: mapState([
-      'names',
-      'isFilter',
-      'options',
-      'filters'
-  ])
 }
 </script>
 
