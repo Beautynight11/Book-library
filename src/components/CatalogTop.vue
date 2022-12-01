@@ -11,9 +11,16 @@
           class="catalog__list"
           v-for="(name, index) in names"
           :key="index"
-          @click="filterByYear(name)"
+          @click="filterByParams(name)"
       >
         {{ name }}</div>
+      <div
+          class="catalog__delete"
+          v-if="isParams"
+          @click="filterByParams('Delete params')"
+      >
+        Delete params
+      </div>
     </div>
     <div class="catalog__select"
          v-if="isFilter"
@@ -21,12 +28,12 @@
       <FilterForm
           title="Country"
           :filter="filters.country"
-          :get-params="getParams"
+          :filter-by-params="filterByParams"
       />
       <FilterForm
           title="Language"
           :filter="filters.language"
-          :get-params="getParams"
+          :filter-by-params="filterByParams"
       />
       <div
           class="catalog__btn"
@@ -54,6 +61,10 @@ export default {
       required: true,
       type: Boolean,
     },
+    isParams: {
+      required: true,
+      type: Boolean,
+    },
     options: {
       required: true,
       type: Array,
@@ -66,11 +77,7 @@ export default {
       required: true,
       type: Function,
     },
-    getParams: {
-      required: true,
-      type: Function,
-    },
-    filterByYear: {
+    filterByParams: {
       required: true,
       type: Function,
     },
@@ -109,6 +116,13 @@ export default {
     &:hover
       color: #d7d040
 
+  &__delete
+    cursor: pointer
+    margin-left: auto
+    margin-right: 15px
+
+    &:hover
+      color: #d74040
 
   &__btn
     width: 15px

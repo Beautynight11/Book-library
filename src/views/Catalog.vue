@@ -1,19 +1,19 @@
 <template>
   <div class="catalog">
     <CatalogTop
-        :filter-by-year="filterByYear"
-        :get-params="getParams"
+        :filter-by-params="filterByParams"
         :toggle-filter="toggleFilter"
         :names="names"
         :options="options"
         :is-filter="isFilter"
         :filters="filters"
+        :is-params="isParams"
     />
     <div class="container">
     <div class="catalog__books">
       <router-link :to="{path: '/book'}"
           class="catalog__book"
-          v-for="(book, index) in filteredData || list"
+          v-for="(book, index) in (filteredData !== null ? filteredData : list)"
           :key="index"
           :style="`background-image: url(${book.imageLink})`"
           @click="getBookInfo(
@@ -54,8 +54,7 @@ export default {
     ...mapMutations([
       'getBookInfo',
       'toggleFilter',
-      'getParams',
-      'filterByYear',
+      'filterByParams',
     ])
   },
   computed: mapState([
@@ -64,7 +63,8 @@ export default {
     'names',
     'isFilter',
     'options',
-    'filters'
+    'filters',
+    'isParams',
   ])
 }
 </script>

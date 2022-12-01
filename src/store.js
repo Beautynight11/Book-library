@@ -15,6 +15,7 @@ const store = createStore({
             },
             isFilter: false,
             names: ['New', 'Old', 'More...'],
+            isParams: false
         }
     },
     mutations: {
@@ -28,19 +29,9 @@ const store = createStore({
                 state.filteredData = state.list
             }
         },
-        getParams(state, el) {
-            state.filteredData = state.list.filter(
-                data =>
-                    data.country === el
-                    || data.language === el
-                    || data.title === el
-                    || data.year === el
-                    || data.author === el
-                    || data.pages === el
-            );
+        filterByParams(state, name) {
+            state.isParams = true;
             state.isFilter = false;
-        },
-        filterByYear(state, name) {
             state.list.forEach(object => {
                 if (!state.filters.country.includes(object.country)) {
                     state.filters.country.push(object.country);
@@ -59,9 +50,21 @@ const store = createStore({
                     }
                     if (name.toLowerCase() === 'more...') {
                         state.isFilter = true;
+                    } else {
+                        return data.country === name
+                            || data.language === name
+                            || data.title === name
+                            || data.year === name
+                            || data.author === name
+                            || data.pages === name
                     }
                 }
             )
+
+            if (name.toLowerCase() === 'delete params') {
+                state.filteredData = null;
+                state.isParams = false;
+            }
         },
     },
 });

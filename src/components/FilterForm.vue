@@ -6,7 +6,7 @@
           class="filter__item"
           v-for="(item, index) in filter"
           :key="index"
-          @click="getParams(item)"
+          @click="filterByParams(item)"
       >
         {{ item }}
       </div>
@@ -26,7 +26,7 @@ export default {
       required: false,
       type: Object,
     },
-    getParams: {
+    filterByParams: {
       required: true,
       type: Function
     }

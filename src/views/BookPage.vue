@@ -21,7 +21,7 @@
           >
             {{ index }}:
             <router-link :to="{path: '/catalog'}">
-              <span @click="getParams(item)">{{ item }}</span>
+              <span @click="filterByParams(item)">{{ item }}</span>
             </router-link>
           </div>
         <button class="bookPage__btn">Add at the library</button>
@@ -37,7 +37,7 @@ export default {
   name: "BookPage",
   methods: {
     ...mapMutations([
-        'getParams'
+        'filterByParams'
     ])
   },
   computed: mapState([
