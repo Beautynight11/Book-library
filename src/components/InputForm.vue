@@ -1,9 +1,10 @@
 <template>
-  <form>
+  <form @submit.prevent>
     <input
         :type="type"
         :placeholder="placeholder"
         v-model="this.info"
+        @keyup.enter="buttonFunc(this.info)"
     />
     <button
         :type="typeBtn"
