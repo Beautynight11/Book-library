@@ -57,10 +57,10 @@ const store = createStore({
                         || data.year === name
                         || data.author === name
                         || data.pages === name
-                        || data.country.toLowerCase().split(' ').includes(name.toLowerCase())
-                        || data.language.toLowerCase().split(' ').includes(name.toLowerCase())
-                        || data.title.toLowerCase().split(' ').includes(name.toLowerCase())
-                        || data.author.toLowerCase().split(' ').includes(name.toLowerCase())
+                        || data.country.toLowerCase().includes(name.toLowerCase())
+                        || data.language.toLowerCase().includes(name.toLowerCase())
+                        || data.title.toLowerCase().includes(name.toLowerCase())
+                        || data.author.toLowerCase().includes(name.toLowerCase())
                 }
             )
             if (name.toLowerCase() === 'delete params') {
