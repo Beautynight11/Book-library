@@ -4,11 +4,11 @@
         :type="type"
         :placeholder="placeholder"
         v-model="this.info"
-        @keyup.enter="buttonFunc(this.info)"
+        @keyup.enter="buttonFunc(this.info); this.info = null"
     />
     <button
         :type="typeBtn"
-        @click="buttonFunc(this.info)"
+        @click="buttonFunc(this.info);  this.info = null"
     ></button>
   </form>
 </template>
