@@ -13,7 +13,7 @@
           placeholder="Book, author, genre..."
           type="text"
           type-btn="button"
-          :button-func="getInfo"
+          :button-func="filterByParams"
       />
     </div>
     <div class="header__account">Mary</div>
@@ -22,19 +22,15 @@
 
 <script>
 import InputForm from "./InputForm.vue";
+import { mapMutations } from "vuex";
 
 export default {
   name: "HeaderMenu",
   components: {InputForm},
-  data () {
-    return {
-      info: null
-    }
-  },
   methods: {
-    getInfo(info) {
-      this.info = info;
-    }
+    ...mapMutations([
+        'filterByParams'
+    ])
   }
 }
 </script>

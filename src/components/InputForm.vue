@@ -8,9 +8,7 @@
     <button
         :type="typeBtn"
         @click="buttonFunc(this.info)"
-    >
-      {{ text }}
-    </button>
+    ></button>
   </form>
 </template>
 
@@ -33,11 +31,6 @@ export default {
     buttonFunc: {
       required: false,
       type: Function,
-    },
-    text: {
-      required: false,
-      type: String,
-      default: null
     },
   },
   data() {
@@ -62,4 +55,5 @@ input
 button
   outline: none
   border: none
+  cursor: pointer
 </style>
