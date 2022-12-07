@@ -2,6 +2,7 @@
   <div class="catalog">
     <CatalogTop
         :filter-by-params="filterByParams"
+        :filter-by-category="filterByCategory"
         :toggle-filter="toggleFilter"
         :names="names"
         :options="options"
@@ -10,6 +11,12 @@
         :is-params="isParams"
     />
     <div class="container">
+      <div
+          class="catalog__error"
+          v-if="isRequest">
+        No result!
+        <p>Please try another request</p>
+      </div>
     <div class="catalog__books">
       <router-link :to="{path: '/book'}"
           class="catalog__book"
@@ -17,7 +24,8 @@
           :key="index"
           :style="`background-image: url(${book.imageLink})`"
           @click="getBookInfo(
-              {img: book.imageLink,
+              {
+              img: book.imageLink,
               obj: {
               Name: book.title,
               Author: book.author,
@@ -55,6 +63,7 @@ export default {
       'getBookInfo',
       'toggleFilter',
       'filterByParams',
+      'filterByCategory',
     ])
   },
   computed: mapState([
@@ -65,12 +74,17 @@ export default {
     'options',
     'filters',
     'isParams',
+    'isRequest'
   ])
 }
 </script>
 
 <style scoped lang="sass">
 .catalog
+
+  &__error
+    text-align: center
+    font-size: 20px
 
   &__books
     display: flex

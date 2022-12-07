@@ -16,6 +16,7 @@ const store = createStore({
             isFilter: false,
             names: ['New', 'Old', 'More...'],
             isParams: false,
+            isRequest: false,
         }
     },
     mutations: {
@@ -29,9 +30,8 @@ const store = createStore({
                 state.filteredData = state.list
             }
         },
-        filterByParams(state, name) {
+        filterByCategory(state, name) {
             state.isParams = true;
-            state.isFilter = false;
             state.list.forEach(object => {
                 if (!state.filters.country.includes(object.country)) {
                     state.filters.country.push(object.country);
@@ -51,23 +51,33 @@ const store = createStore({
                     if (name.toLowerCase() === 'more...') {
                         state.isFilter = true;
                     }
-                    return data.country === name
-                        || data.language === name
-                        || data.title === name
-                        || data.year === name
-                        || data.author === name
-                        || data.pages === name
-                        || data.country.toLowerCase().includes(name.toLowerCase())
-                        || data.language.toLowerCase().includes(name.toLowerCase())
-                        || data.title.toLowerCase().includes(name.toLowerCase())
-                        || data.author.toLowerCase().includes(name.toLowerCase())
                 }
             )
-            if (name.toLowerCase() === 'delete params') {
+            if (name.toLowerCase() === 'delete parameters') {
                 state.filteredData = null;
                 state.isParams = false;
+                state.isRequest = false;
             }
         },
+        filterByParams(state, param) {
+            state.isParams = true;
+            state.isFilter = false;
+            state.filteredData = state.list.filter(
+                data => {
+                    if (typeof param === 'string') {
+                        return data.country.toLowerCase().includes(param.toLowerCase())
+                            || data.language.toLowerCase().includes(param.toLowerCase())
+                            || data.title.toLowerCase().includes(param.toLowerCase())
+                            || data.author.toLowerCase().includes(param.toLowerCase())
+                    }
+                    if (typeof param === 'number') {
+                        return data.year.toString().includes(param)
+                            || data.pages.toString().includes(param)
+                    }
+                }
+            )
+            state.filteredData.length <= 0 ? state.isRequest = true : state.isRequest = false
+        }
     },
 });
 

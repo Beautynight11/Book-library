@@ -11,15 +11,15 @@
           class="catalog__list"
           v-for="(name, index) in names"
           :key="index"
-          @click="filterByParams(name)"
+          @click="filterByCategory(name)"
       >
         {{ name }}</div>
       <div
           class="catalog__delete"
           v-if="isParams"
-          @click="filterByParams('Delete params')"
+          @click="filterByCategory('Delete parameters')"
       >
-        Delete params
+        Delete parameters
       </div>
     </div>
     <div class="catalog__select"
@@ -81,6 +81,10 @@ export default {
       required: true,
       type: Function,
     },
+    filterByCategory: {
+      required: true,
+      type: Function,
+    }
   },
 }
 </script>
