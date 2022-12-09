@@ -16,7 +16,7 @@
           :button-func="filterByParams"
       />
     </div>
-    <div class="header__account">Mary</div>
+    <router-link :to="{path: '/account'}" class="header__account">My library</router-link>
   </div>
 </template>
 
@@ -84,8 +84,8 @@ export default {
       margin-left: -10px
       margin-top: -10px
 
-a
-  color: #ffffff
-  text-decoration: none
-  outline: none
+  &__account
+    cursor: pointer
+
+
 </style>

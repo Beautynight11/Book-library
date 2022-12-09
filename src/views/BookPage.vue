@@ -24,7 +24,12 @@
               <span @click="filterByParams(item)">{{ item }}</span>
             </router-link>
           </div>
-        <button class="bookPage__btn">Add at the library</button>
+        <button
+            class="bookPage__btn"
+            @click="getAccountInfo({item: newBook, img: imgBook})"
+        >
+          Add at the library
+        </button>
       </div>
     </div>
   </div>
@@ -37,7 +42,8 @@ export default {
   name: "BookPage",
   methods: {
     ...mapMutations([
-        'filterByParams'
+        'filterByParams',
+        'getAccountInfo'
     ])
   },
   computed: mapState([

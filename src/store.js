@@ -17,6 +17,8 @@ const store = createStore({
             names: ['New', 'Old', 'More...'],
             isParams: false,
             isRequest: false,
+            accountInfo: [],
+            tableColumns: ['Image', 'Name', 'Author', 'Country', 'Year'],
         }
     },
     mutations: {
@@ -77,6 +79,9 @@ const store = createStore({
                 }
             )
             state.filteredData.length <= 0 ? state.isRequest = true : state.isRequest = false
+        },
+        getAccountInfo(state, {item, img}) {
+            state.accountInfo.push({ ...item, img});
         }
     },
 });
