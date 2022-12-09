@@ -82,6 +82,9 @@ const store = createStore({
         },
         getAccountInfo(state, {item, img}) {
             state.accountInfo.push({ ...item, img});
+        },
+        deleteFromLibrary(state, item) {
+           state.accountInfo = state.accountInfo.filter(data => data.Name !== item.Name)
         }
     },
 });

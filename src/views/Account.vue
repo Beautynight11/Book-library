@@ -23,22 +23,31 @@
         <div class="account__author">{{ item.Author }}</div>
         <div class="account__country">{{ item.Country }}</div>
         <div class="account__year">{{ item.Year }}</div>
+        <div class="account__remove" @click="deleteFromLibrary(item)">
+          <div class="account__img"></div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
 export default {
   name: "Account",
+  methods: {
+    ...mapMutations([
+        'deleteFromLibrary'
+    ])
+  },
   computed: {
     ...mapState([
         'accountInfo',
-        'tableColumns'
+        'tableColumns',
+
     ])
-  }
+  },
 }
 </script>
 
@@ -54,10 +63,11 @@ export default {
     color: gray
     text-align: center
     border-bottom: 1px solid gray
+    padding-right: 20px
 
   &__col
-    flex: 1 0 20%
-    width: 20%
+    flex: 1 0 16.666%
+    width: 16.666%
 
   &__info
     display: flex
@@ -68,8 +78,8 @@ export default {
 
 
   &__title, &__author, &__country, &__year, &__image
-    flex: 1 0 20%
-    width: 20%
+    flex: 1 0 16.666%
+    width: 16.666%
 
   &__image
     width: 70px
@@ -85,4 +95,14 @@ export default {
     background-repeat: no-repeat
     background-size: contain
     background-position: center
+
+  &__remove
+    width: 10px
+    height: 10px
+    position: relative
+    padding-right: 20px
+    cursor: pointer
+
+  &__remove &__img
+    background-image: url("../public/icons/cross-symbol_icon-icons.com_74149.png")
 </style>
