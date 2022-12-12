@@ -18,6 +18,7 @@ const store = createStore({
             isParams: false,
             isRequest: false,
             accountInfo: [],
+            accountInfoCounter: [],
             tableColumns: ['Image', 'Name', 'Author', 'Country', 'Year'],
         }
     },
@@ -81,7 +82,10 @@ const store = createStore({
             state.filteredData.length <= 0 ? state.isRequest = true : state.isRequest = false
         },
         getAccountInfo(state, {item, img}) {
-            state.accountInfo.push({ ...item, img});
+            if (!state.accountInfoCounter.includes(item.Name)) {
+                state.accountInfoCounter.push(item.Name);
+                state.accountInfo.push({ ...item, img});
+            }
         },
         deleteFromLibrary(state, item) {
            state.accountInfo = state.accountInfo.filter(data => data.Name !== item.Name)
