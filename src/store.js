@@ -5,8 +5,8 @@ const store = createStore({
     state () {
         return {
             list: books,
-            newBook: {},
-            imgBook: '',
+            newBook: JSON.parse(localStorage.getItem('newBook')),
+            imgBook: JSON.parse(localStorage.getItem('imgBook')),
             filteredData: null,
             options: ['Country', 'Language'],
             filters: {
@@ -25,6 +25,8 @@ const store = createStore({
         getBookInfo (state, {img, obj}) {
             state.imgBook = img;
             state.newBook = obj;
+            localStorage.setItem('newBook', JSON.stringify(state.newBook));
+            localStorage.setItem('imgBook', JSON.stringify(state.imgBook));
         },
         toggleFilter(state) {
             state.isFilter = !state.isFilter

@@ -45,7 +45,6 @@ export default {
     ...mapState([
         'accountInfo',
         'tableColumns',
-
     ])
   },
 }
