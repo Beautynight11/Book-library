@@ -17,8 +17,7 @@ const store = createStore({
             names: ['New', 'Old', 'More...'],
             isParams: false,
             isRequest: false,
-            accountInfo: [],
-            accountInfoCounter: [],
+            accountInfo: JSON.parse(localStorage.getItem('accountInfo')),
             tableColumns: ['Image', 'Name', 'Author', 'Country', 'Year'],
         }
     },
@@ -82,14 +81,21 @@ const store = createStore({
             state.filteredData.length <= 0 ? state.isRequest = true : state.isRequest = false
         },
         getAccountInfo(state, {item, img}) {
-            if (!state.accountInfoCounter.includes(item.Name)) {
-                state.accountInfoCounter.push(item.Name);
+            if (!localStorage.accountInfo) {
+                state.accountInfo = [];
                 state.accountInfo.push({ ...item, img});
             }
+            if (localStorage.accountInfo && !localStorage.accountInfo.includes(item.Name)) {
+                state.accountInfo.push({ ...item, img});
+            }
+            localStorage.setItem('accountInfo', JSON.stringify(state.accountInfo));
         },
         deleteFromLibrary(state, item) {
-           state.accountInfo = state.accountInfo.filter(data => data.Name !== item.Name)
-        }
+           state.accountInfo = state.accountInfo.filter(data => data.Name !== item.Name);
+           localStorage.setItem('accountInfo', JSON.stringify(
+               JSON.parse(localStorage.getItem('accountInfo'))
+                   .filter(data => data.Name !== item.Name)))
+        },
     },
 });
 

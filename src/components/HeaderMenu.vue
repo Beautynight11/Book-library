@@ -16,7 +16,12 @@
           :button-func="filterByParams"
       />
     </div>
-    <router-link :to="{path: '/account'}" class="header__account">My library</router-link>
+    <router-link
+        :to="{path: '/account'}"
+        class="header__account"
+    >
+      My library
+    </router-link>
   </div>
 </template>
 
@@ -29,7 +34,7 @@ export default {
   components: {InputForm},
   methods: {
     ...mapMutations([
-        'filterByParams'
+        'filterByParams',
     ])
   }
 }
