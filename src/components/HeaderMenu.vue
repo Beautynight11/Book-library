@@ -40,7 +40,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .header
   background-color: #111546
   color: white
@@ -92,5 +92,7 @@ export default {
   &__account
     cursor: pointer
 
+a
+  color: #fff
 
 </style>

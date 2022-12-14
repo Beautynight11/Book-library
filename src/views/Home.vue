@@ -4,8 +4,8 @@
     <div class="main__text">
       <p>Here you can find a large number of different literature.</p>
       <p>To get started, click
-        <router-link :to="{path: '/catalog'}">'
-          catalog of books'
+        <router-link :to="{path: '/catalog'}">
+          "catalog"
         </router-link>
         or use the search</p>
     </div>

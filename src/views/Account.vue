@@ -8,6 +8,10 @@
             :key="index"
         >{{name}}</div>
       </div>
+      <div class="account__error" v-if="isAccount">
+        Nothing selected!
+        <p>Please go to <router-link :to="{path: '/catalog'}">"catalog"</router-link> to choose your books</p>
+      </div>
       <div
           class="account__info"
           v-for="(item, index) in accountInfo"
@@ -45,6 +49,7 @@ export default {
     ...mapState([
         'accountInfo',
         'tableColumns',
+        'isAccount'
     ])
   },
 }
@@ -67,6 +72,14 @@ export default {
   &__col
     flex: 1 0 16.666%
     width: 16.666%
+
+  &__error
+    font-size: 20px
+    text-align: center
+    padding: 50px 0
+
+    a:hover
+      color: #d7d040
 
   &__info
     display: flex

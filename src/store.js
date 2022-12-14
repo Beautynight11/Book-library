@@ -7,18 +7,19 @@ const store = createStore({
             list: books,
             newBook: JSON.parse(localStorage.getItem('newBook')),
             imgBook: JSON.parse(localStorage.getItem('imgBook')),
+            accountInfo: JSON.parse(localStorage.getItem('accountInfo')),
             filteredData: null,
             options: ['Country', 'Language'],
             filters: {
                 country: [],
                 language: [],
             },
-            isFilter: false,
             names: ['New', 'Old', 'More...'],
+            tableColumns: ['Image', 'Name', 'Author', 'Country', 'Year'],
             isParams: false,
             isRequest: false,
-            accountInfo: JSON.parse(localStorage.getItem('accountInfo')),
-            tableColumns: ['Image', 'Name', 'Author', 'Country', 'Year'],
+            isFilter: false,
+            isAccount: JSON.parse(localStorage.getItem('isAccount')),
         }
     },
     mutations: {
@@ -89,14 +90,19 @@ const store = createStore({
             }
             if (localStorage.accountInfo && !localStorage.accountInfo.includes(item.Name)) {
                 state.accountInfo.push({ ...item, img});
+                state.isAccount = false;
             }
             localStorage.setItem('accountInfo', JSON.stringify(state.accountInfo));
+            localStorage.setItem('isAccount', JSON.stringify(state.isAccount));
         },
         deleteFromLibrary(state, item) {
            state.accountInfo = state.accountInfo.filter(data => data.Name !== item.Name);
            localStorage.setItem('accountInfo', JSON.stringify(
                JSON.parse(localStorage.getItem('accountInfo'))
-                   .filter(data => data.Name !== item.Name)))
+                   .filter(data => data.Name !== item.Name)));
+            if (state.accountInfo.length === 0) {
+                localStorage.setItem('isAccount', JSON.stringify(state.isAccount = true));
+            }
         },
     },
 });
