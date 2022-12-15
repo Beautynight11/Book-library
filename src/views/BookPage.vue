@@ -26,9 +26,17 @@
           </div>
         <button
             class="bookPage__btn"
-            @click="getAccountInfo({item: newBook, img: imgBook})"
+            v-if="!this.isButton"
+            @click="getAccountInfo({item: newBook, img: imgBook}); changeIsButton(newBook)"
         >
           Add at the library
+        </button>
+        <button
+            v-if="this.isButton"
+            class="bookPage__btn--disabled "
+            :disabled="true"
+        >
+          Added at the library
         </button>
       </div>
     </div>
@@ -40,16 +48,28 @@ import { mapMutations, mapState } from "vuex";
 
 export default {
   name: "BookPage",
+  data() {
+    return {
+      isButton: false,
+    }
+  },
   methods: {
     ...mapMutations([
         'filterByParams',
         'getAccountInfo',
-    ])
+    ]),
+    changeIsButton(item) {
+      this.accountInfo.forEach(data => {
+        this.isButton = data.Name === item.Name;
+      })
+      this.isButton = true;
+    }
   },
   computed: mapState([
       'newBook',
-      'imgBook'
-  ])
+      'imgBook',
+      'accountInfo'
+  ]),
 }
 </script>
 
@@ -118,6 +138,13 @@ export default {
       color: #000000
       background-color: #d7d040
       border: 1px solid #d7d040
+
+    &--disabled
+      padding: 15px
+      width: 100%
+      font-size: 14px
+      margin-top: 40px
+
 
 span
   cursor: pointer
