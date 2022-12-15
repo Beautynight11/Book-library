@@ -51,7 +51,7 @@ import FilterForm from "./FilterForm.vue";
 
 export default {
   name: "CatalogTop",
-  components: {FilterForm},
+  components: { FilterForm },
   props: {
     names: {
       required: true,
@@ -140,7 +140,7 @@ export default {
   &__cross
     width: 100%
     height: 100%
-    background-image: url("../public/images/cross-symbol_icon-icons.com_74149.png")
+    background-image: url("../public/icons/cross-symbol_icon-icons.com_74149.png")
     background-position: center
     background-size: contain
     background-repeat: no-repeat

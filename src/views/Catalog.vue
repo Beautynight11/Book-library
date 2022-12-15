@@ -37,9 +37,9 @@
               })"
       >
         <div class="catalog__description">
-          <div class="catalog__title">Author: {{book.author}}</div>
-          <div class="catalog__text">Title: {{book.title}}</div>
-          <div class="catalog__country">Country: {{book.country}}</div>
+          <div class="catalog__title">Author: {{ book.author }}</div>
+          <div class="catalog__text">Title: {{ book.title }}</div>
+          <div class="catalog__country">Country: {{ book.country }}</div>
         </div>
       </router-link>
     </div>

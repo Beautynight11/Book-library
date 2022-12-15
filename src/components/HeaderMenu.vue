@@ -31,16 +31,16 @@ import { mapMutations } from "vuex";
 
 export default {
   name: "HeaderMenu",
-  components: {InputForm},
+  components: { InputForm },
   methods: {
     ...mapMutations([
         'filterByParams',
     ])
-  }
+  },
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 .header
   background-color: #111546
   color: white
@@ -69,6 +69,7 @@ export default {
 
   &__search
     width: 450px
+    position: relative
 
   &__search button
     padding: 10px
@@ -89,10 +90,27 @@ export default {
       margin-left: -10px
       margin-top: -10px
 
+  &__prompt
+    background-color: #ffffff
+    position: absolute
+    top: 40px
+    left: 0
+    width: inherit
+    color: #111546
+    border: 1px solid #111546
+    z-index: 5
+
+  &__list
+    padding: 5px
+    border-bottom: 1px solid #111546
+
+    &:last-child
+      border-bottom: none
+
   &__account
     cursor: pointer
 
-a
-  color: #fff
+.header a
+  color: #ffffff
 
 </style>

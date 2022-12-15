@@ -81,7 +81,7 @@ const store = createStore({
                     }
                 }
             )
-            state.filteredData.length <= 0 ? state.isRequest = true : state.isRequest = false
+            state.filteredData.length <= 0 ? state.isRequest = true : state.isRequest = false;
         },
         getAccountInfo(state, {item, img}) {
             if (!localStorage.accountInfo) {

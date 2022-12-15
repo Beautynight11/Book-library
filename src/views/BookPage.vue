@@ -9,11 +9,11 @@
       <div class="bookPage__image">
         <div
             class="bookPage__img"
-            :style="`background-image: url(${imgBook})`">
+            :style="`background-image: url(${imgBook})`"
+        >
         </div>
       </div>
       <div class="bookPage__description">
-
           <div
               class="bookPage__info"
               v-for="(item, index) in newBook"
@@ -36,14 +36,14 @@
 </template>
 
 <script>
-import {mapMutations, mapState} from "vuex";
+import { mapMutations, mapState } from "vuex";
 
 export default {
   name: "BookPage",
   methods: {
     ...mapMutations([
         'filterByParams',
-        'getAccountInfo'
+        'getAccountInfo',
     ])
   },
   computed: mapState([
