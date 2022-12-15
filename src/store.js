@@ -96,7 +96,11 @@ const store = createStore({
             localStorage.setItem('isAccount', JSON.stringify(state.isAccount));
         },
         deleteFromLibrary(state, item) {
-           state.accountInfo = state.accountInfo.filter(data => data.Name !== item.Name);
+           state.accountInfo = state.accountInfo.filter(
+               data =>
+                   data.Name !== item.Name
+           );
+           localStorage.removeItem(item.Name);
            localStorage.setItem('accountInfo', JSON.stringify(
                JSON.parse(localStorage.getItem('accountInfo'))
                    .filter(data => data.Name !== item.Name)));

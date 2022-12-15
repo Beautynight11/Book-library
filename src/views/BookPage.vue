@@ -50,7 +50,8 @@ export default {
   name: "BookPage",
   data() {
     return {
-      isButton: false,
+      isButton: JSON.parse(localStorage.getItem(JSON.parse(localStorage.getItem('newBook')).Name)),
+      // isButton: false,
     }
   },
   methods: {
@@ -59,10 +60,10 @@ export default {
         'getAccountInfo',
     ]),
     changeIsButton(item) {
-      this.accountInfo.forEach(data => {
+      JSON.parse(localStorage.getItem('accountInfo')).forEach(data => {
         this.isButton = data.Name === item.Name;
       })
-      this.isButton = true;
+      localStorage.setItem(item.Name, JSON.stringify(this.isButton = true));
     }
   },
   computed: mapState([
